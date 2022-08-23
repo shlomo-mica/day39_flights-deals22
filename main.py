@@ -8,6 +8,9 @@ for n in range(loop_count):
     try:
         print((sheety_list(n)[0]), (sheety_list(n)[1]))
         FlightSearch((sheety_list(n)[0]), sheety_list(n)[1])
+
+
+
     except:
         print("ticket price to high")
 
