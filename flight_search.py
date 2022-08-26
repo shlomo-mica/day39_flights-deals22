@@ -1,8 +1,6 @@
 import requests
-
-from datetime import timedelta, datetime
-
 import flight_data
+from datetime import timedelta, datetime
 
 TEQUILA_ENDPOINT = "https://tequila-api.kiwi.com"
 TEQUILA_API_KEY = "EE--B8Y0SnG2mc0VJSHuAhVHQi8TgXmV"
@@ -41,23 +39,16 @@ class FlightSearch:
         flight_price = (response.json()["data"])  # list
         # print(flight_price)
 
-        print(flight_price[0]['id'])
-        print(flight_price[0]['flyTo'])
-        print(flight_price[0]['price'])
-
-        price_reduce= {"id": flight_price[0]['id'], "fly to": flight_price[0]['flyTo']
+        price_reduce = {"id": flight_price[0]['id'], "fly to": flight_price[0]['flyTo']
             , "price": flight_price[0]['price']}
         route_count = len(flight_price[0]['route'])
         for i in range(route_count):
-            print(flight_price[0]['route'][i]['id'])
-            print(flight_price[0]['route'][i]['operating_flight_no'])
-            print(flight_price[0]['route'][i]['local_departure'])
             price_reduce.update({"routh id": flight_price[0]['route'][i]['id'],
                                  "flight number": flight_price[0]['route'][i]['operating_flight_no'],
-                                 "deperature date": flight_price[0]['route'][i]['local_departure']})
+                                 "departure date": (flight_price[0]['route'][i]['local_departure'])})
             i += 1
-        print(price_reduce)
-        flight_data.FlightData(price_reduce)
+
+        flight_data.FlightData(price_reduce)#--->send dictionary to flight data
 # print(to_time.strftime("%d/%m/%Y"))
 # to_time = datetime(2022, 12, 4)
 # flyto22=input("city code ??").upper()
